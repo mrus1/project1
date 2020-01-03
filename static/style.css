@@ -1,0 +1,64 @@
+body {
+  background-color: #c9a53e;
+  padding-bottom: 15px;
+}
+
+.login {
+  margin: 25px 0 75px;
+}
+
+input {
+  margin-top: 5px;
+}
+
+.error {
+  color: red;
+  height: 25px;
+  margin-left: 8px;
+}
+
+.mx-auto {
+  margin-top: 25px;
+}
+
+input {
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  border-radius: 0.3rem;
+  width: 45%;
+}
+
+.card {
+  margin-top: 12px;
+  width: auto;
+}
+
+.no-results {
+  color: red;
+  height: 25px;
+  margin-left: 8px;
+}
+
+@media (min-width: 576px) {
+  .container {
+    width: 100%;
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    width: 72%;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 58%;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 47%;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */

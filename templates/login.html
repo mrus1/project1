@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  LogIn
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  <div class="jumbotron login">
+    <h1 class="display-4">Log in</h1>
+    <form action="{{ url_for('log_in') }}" method="post">
+      <input class="form-control" name="username" placeholder="Username" type="text" autofocus>
+      <input class="form-control" name="password" placeholder="Password" type="password">
+      <div class="error">
+        {% if error == 1 %}
+          <small>*Username and password are not matching, please try again!</small>
+        {% elif error == 2 %}
+          <small>*Password is incorrect!</small>
+        {% endif %}
+      </div>
+      <button class="btn btn-primary">Log In</button>
+    </form>
+  </div>
+
+  <div class="jumbotron" name="register">
+    <h1 class="display-4">Registration</h1>
+    <form action="{{ url_for('register') }}" method="post">
+      <input class="form-control" name="userNew" placeholder="Username" type="text">
+      <input class="form-control" name="passNew" placeholder="Password" type="password">
+      <div class="error">
+        {% if error == 1 %}
+          <small>*Username is required!</small>
+        {% elif error == 2 %}
+          <small>*Password is required!</small>
+        {% elif error == 3 %}
+          <small>*Username "{{ username }}" is already in use!</small>
+        {% endif %}
+      </div>
+      <button class="btn btn-primary">Create an Account</button>
+    </form>
+  </div>
+
+  {% if error == None %}
+    <div class="created">
+      <h3>User {{ username }} is successfuly created!</h3>
+    </div>
+  {% endif %}
+
+</div>
+
+
+
+{% endblock %}

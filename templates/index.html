@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  Look4Book
+{% endblock %}
+
+{% block body %}
+  <div class="container">
+    <h1 class="mx-auto" style="width: 200px;">Look4Book</h1>
+
+    {% if user_id %}
+      <form action="{{ url_for('index') }}" method="post">
+        <input name="search_string" type="search" placeholder="Title, year, isbn..." type="text" autofocus>
+        <button class="btn btn-primary btn-lg">Search</button>
+      </form>
+    {% else %}
+      <h4>For search and comment books, Log In!</h4>
+      {% for row in books_random %}
+        <div class="card">
+          <div class="card-body">
+            <h3 class="card-title">{{row[0]}}</h3>
+            <h4 class="card-subtitle mb-2 text-muted">{{row[1]}}</h4>
+          </div>
+        </div>
+      {% endfor %}
+    {% endif %}
+
+    {% if error %}
+      <div class="no-results">
+        <p>No results!</p>
+      </div>
+    {% else %}
+      {% for row in books %}
+        <div class="card">
+          <div class="card-body">
+            <h3 class="card-title">{{row[0]}}</h3>
+            <h4 class="card-subtitle mb-2 text-muted">{{row[1]}}</h4>
+            <a href="{{ url_for('book', book_id=row[2]) }}" class="btn btn-primary btn-md">More</a>
+          </div>
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+{% endblock %}
+
+
+<!-- http://127.0.0.1:5000/ -->

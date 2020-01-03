@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  Book Information
+{% endblock %}
+
+{% block body %}
+  <div class="container">
+
+    <!-- Informations about book -->
+    <div class="card">
+      <div class="card-body">
+        <h1 class="card-title">{{ book_info[0] }}</h1>
+        <h3 class="card-subtitle mb-2 text-muted">{{ book_info[1]}}</h3>
+        <p class="card-text">Year: {{ book_info[3] }}<br>ISBN: {{ book_info[2] }}</p>
+        <a href="{{ url_for('index') }}" class="card-link btn btn-secondary">Go Back</a>
+      </div>
+    </div>
+
+    <!-- Add review for the book -->
+    <form method="post">
+      <div class="form-group">
+        <label for="exampleFormControlInput1">Leave your comment</label>
+        <textarea class="form-control" rows="3" name="comment"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="inputState">Rate this book</label>
+        <select id="inputState" class="form-control" name="rating">
+          <option selected>5</option>
+          <option>4</option>
+          <option>3</option>
+          <option>2</option>
+          <option>1</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-success">Post Review</button>
+    </form>
+
+    <!-- Submitted reviews -->
+    {% if review_info %}
+    <h2>Reviews:</h2>
+      {% for row in review_info %}
+        <div class="card">
+          <div class="card-header">
+            {{ row[0] }}'s Review
+          </div>
+          <div class="card-body">
+          <h5 class="card-title">"{{ row[1] }}"</h5>
+          <p class="card-text">Rating: {{ row[2] }}</p>
+          {% if row[0] == username %}
+            <a href="{{ url_for('delete', review_id=row[3], book_id=book_id) }}" class="btn btn-danger">Delete</a>
+          {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    {% endif %}
+
+  </div>
+{% endblock %}
